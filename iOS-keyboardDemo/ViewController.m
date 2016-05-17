@@ -61,6 +61,8 @@
 
 #import "ViewController.h"
 #import "BAReplyView.h"
+#import "proView.h"
+
 
 #define KCOLOR(R, G, B, A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
 #pragma mark - ***** frame设置
@@ -76,6 +78,8 @@
 @property (nonatomic, strong) BAReplyView *replyView;
 @property (nonatomic, strong) UIButton *notBtn;
 
+@property (nonatomic, strong) proView *progressView;
+
 @end
 
 @implementation ViewController
@@ -87,10 +91,10 @@
     self.title = @"博爱键盘处理demo";
     
     self.replyView.hidden = NO;
-    self.notBtn.hidden = NO;
     
-    /*! 创建view的时候就注册键盘通知 */
-    [_replyView registNotification];
+    self.progressView.hidden = NO;
+    
+
 }
 
 - (BAReplyView *)replyView
@@ -113,6 +117,9 @@
         }];
         _replyView.backgroundColor = KCOLOR(245, 244, 245, 1.0);
         [self.view addSubview:_replyView];
+        
+        /*! 创建view的时候就注册键盘通知 */
+        [_replyView registNotification];
     }
     return _replyView;
 }
@@ -124,10 +131,46 @@
 }
 
 // 点击空白-键盘收回
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+////    [self.view endEditing:YES];
+//    self.progressView.progress += (arc4random() % 4 + 1) * 0.1;
+//
+//}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+//    self.progressView.progress += (arc4random() % 4 + 1) * 0.1;
+    //    self.circleProgressView.progress = 0.5;
 }
+
+- (proView *)progressView
+{
+    if (!_progressView)
+    {
+        _progressView = [[proView alloc] initWithFrame:CGRectMake(20, 100, 200, 200)];
+//        _progressView.frame = CGRectMake(100, 100, 200, 200);
+        _progressView.backgroundColor = [UIColor greenColor];
+        _progressView.progress = 0.2;
+        [self.view addSubview:_progressView];
+        
+        UISlider * slider = [[UISlider alloc]initWithFrame:CGRectMake(10, 400, KSCREEN_WIDTH - 20, 10)];
+        [slider addTarget:self action:@selector(changeProgress:) forControlEvents:UIControlEventValueChanged];
+        slider.maximumValue = 1.0;
+        slider.minimumValue = 0.f;
+        slider.value = self.progressView.progress;
+        [self.view addSubview:slider];
+    }
+    return _progressView;
+}
+
+- (void)changeProgress:(UISlider *)slider
+{
+    self.progressView.progress = slider.value;
+    //    [self.circleProgressView setNeedsDisplay];
+}
+
 
 
 @end

@@ -14,6 +14,8 @@
 		C448EC941CEAF887005993C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C448EC931CEAF887005993C0 /* Assets.xcassets */; };
 		C448EC971CEAF887005993C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C448EC951CEAF887005993C0 /* LaunchScreen.storyboard */; };
 		C448ECA01CEAF8AD005993C0 /* BAReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = C448EC9F1CEAF8AD005993C0 /* BAReplyView.m */; };
+		C46DE4E71CEB7FF600A83401 /* BACircleProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C46DE4E61CEB7FF600A83401 /* BACircleProgressLayer.m */; };
+		C46DE4EA1CEB852D00A83401 /* proView.m in Sources */ = {isa = PBXBuildFile; fileRef = C46DE4E91CEB852D00A83401 /* proView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,10 @@
 		C448EC981CEAF887005993C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C448EC9E1CEAF8AD005993C0 /* BAReplyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAReplyView.h; sourceTree = "<group>"; };
 		C448EC9F1CEAF8AD005993C0 /* BAReplyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAReplyView.m; sourceTree = "<group>"; };
+		C46DE4E51CEB7FF600A83401 /* BACircleProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BACircleProgressLayer.h; sourceTree = "<group>"; };
+		C46DE4E61CEB7FF600A83401 /* BACircleProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BACircleProgressLayer.m; sourceTree = "<group>"; };
+		C46DE4E81CEB852D00A83401 /* proView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = proView.h; sourceTree = "<group>"; };
+		C46DE4E91CEB852D00A83401 /* proView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = proView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +73,10 @@
 				C448EC8E1CEAF887005993C0 /* ViewController.m */,
 				C448EC9E1CEAF8AD005993C0 /* BAReplyView.h */,
 				C448EC9F1CEAF8AD005993C0 /* BAReplyView.m */,
+				C46DE4E51CEB7FF600A83401 /* BACircleProgressLayer.h */,
+				C46DE4E61CEB7FF600A83401 /* BACircleProgressLayer.m */,
+				C46DE4E81CEB852D00A83401 /* proView.h */,
+				C46DE4E91CEB852D00A83401 /* proView.m */,
 				C448EC901CEAF887005993C0 /* Main.storyboard */,
 				C448EC931CEAF887005993C0 /* Assets.xcassets */,
 				C448EC951CEAF887005993C0 /* LaunchScreen.storyboard */,
@@ -157,8 +167,10 @@
 			files = (
 				C448EC8F1CEAF887005993C0 /* ViewController.m in Sources */,
 				C448EC8C1CEAF887005993C0 /* AppDelegate.m in Sources */,
+				C46DE4EA1CEB852D00A83401 /* proView.m in Sources */,
 				C448ECA01CEAF8AD005993C0 /* BAReplyView.m in Sources */,
 				C448EC891CEAF887005993C0 /* main.m in Sources */,
+				C46DE4E71CEB7FF600A83401 /* BACircleProgressLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
