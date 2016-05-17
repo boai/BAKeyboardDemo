@@ -63,10 +63,18 @@
 #import "BAReplyView.h"
 
 #define KCOLOR(R, G, B, A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
+#pragma mark - ***** frame设置
+// 当前设备的屏幕宽度
+#define KSCREEN_WIDTH    [[UIScreen mainScreen] bounds].size.width
+// 当前设备的屏幕高度
+#define KSCREEN_HEIGHT   [[UIScreen mainScreen] bounds].size.height
+
+
 
 @interface ViewController ()
 
 @property (nonatomic, strong) BAReplyView *replyView;
+@property (nonatomic, strong) UIButton *notBtn;
 
 @end
 
@@ -78,48 +86,35 @@
     
     self.title = @"博爱键盘处理demo";
     
-    [self setupUI];
-}
-
-- (void)setupUI
-{
-    UIButton *notBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    notBtn.frame = CGRectMake(20, 100, 320-40, 40);
-    [notBtn setBackgroundColor:[UIColor greenColor]];
-    [notBtn setTitle:@"点我呀！" forState:UIControlStateNormal];
-    notBtn.layer.masksToBounds = YES;
-    notBtn.layer.cornerRadius = 5.0;
-    [notBtn addTarget:self action:@selector(notBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:notBtn];
-    
-    [self creatSendReplyView];
-}
-
-- (void)notBtnClick:(UIButton *)sender
-{
-}
-
-#pragma mark - ***** 添加聊天评论View
-- (void)creatSendReplyView
-{
-    CGRect frame = CGRectMake(0, self.view.frame.size.height - 50, self.view.frame.size.width, 50);
-    _replyView = [[BAReplyView alloc] initWithFrame:frame withImage:nil withPlaceHolder:@"聊天"  callBackIndex:^(NSString *contentStr) {
-        
-        if(contentStr.length > 0)
-        {
-            ;
-            
-        }
-        else
-        {
-        }
-        
-    }];
-    _replyView.backgroundColor = KCOLOR(245, 244, 245, 1.0);
-    [self.view addSubview:_replyView];
+    self.replyView.hidden = NO;
+    self.notBtn.hidden = NO;
     
     /*! 创建view的时候就注册键盘通知 */
     [_replyView registNotification];
+}
+
+- (BAReplyView *)replyView
+{
+    if (!_replyView)
+    {
+        CGRect frame = CGRectMake(0, self.view.frame.size.height - 50, self.view.frame.size.width, 50);
+        _replyView = [[BAReplyView alloc] initWithFrame:frame withImage:nil withPlaceHolder:@"聊天"  callBackIndex:^(NSString *contentStr) {
+            
+            if(contentStr.length > 0)
+            {
+                NSLog(@"发送内容：%@", contentStr);
+                
+            }
+            else
+            {
+                
+            }
+            
+        }];
+        _replyView.backgroundColor = KCOLOR(245, 244, 245, 1.0);
+        [self.view addSubview:_replyView];
+    }
+    return _replyView;
 }
 
 - (void)dealloc

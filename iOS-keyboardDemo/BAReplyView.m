@@ -136,6 +136,7 @@
     return YES;
 }
 
+/*! 先注册通知，然后实现具体当键盘弹出来要做什么，键盘收起来要做什么 */
 -(void)registNotification
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
@@ -150,13 +151,6 @@
 - (void)removeNotification
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-/*! 先注册通知，然后实现具体当键盘弹出来要做什么，键盘收起来要做什么 */
-- (void)registerForKeyboardNotifications
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 /*! 键盘显示要做什么 */
