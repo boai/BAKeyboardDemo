@@ -118,8 +118,9 @@
         _replyView.backgroundColor = KCOLOR(245, 244, 245, 1.0);
         [self.view addSubview:_replyView];
         
+        /*! 已经做了内部处理，这里就不用单独处理了 */
         /*! 创建view的时候就注册键盘通知 */
-        [_replyView registNotification];
+//        [_replyView registNotification];
     }
     return _replyView;
 }
@@ -127,7 +128,7 @@
 - (void)dealloc
 {
     /*! 记得移除通知哈！ */
-    [_replyView removeNotification];
+//    [_replyView removeKeyboardNotification];
 }
 
 // 点击空白-键盘收回
