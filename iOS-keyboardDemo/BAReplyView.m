@@ -137,7 +137,7 @@
 }
 
 /*! 先注册通知，然后实现具体当键盘弹出来要做什么，键盘收起来要做什么 */
--(void)registNotification
+- (void)registKeyboardNotification
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardWillHideNotification object:nil];
@@ -148,7 +148,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)removeNotification
+- (void)removeKeyboardNotification
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -156,6 +156,10 @@
 /*! 键盘显示要做什么 */
 - (void)keyboardWasShown:(NSNotification *)notification
 {
+    if (self.isShowKeyboard)
+    {
+        return;
+    }
     NSDictionary *info                                  = [notification userInfo];
     
     double duration                                     = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
@@ -181,6 +185,10 @@
 
 - (void)keyboardWasHidden:(NSNotification *)notification
 {
+    if (!self.isShowKeyboard)
+    {
+        return;
+    }
     NSDictionary *info = [notification userInfo];
     double duration = [info[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
@@ -190,6 +198,23 @@
         viewFrame.origin.y = 0;
         [self getCurrentViewController].view.frame = viewFrame;
     }];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField == self.replyTextField)
+    {
+        [self registKeyboardNotification];
+    }
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == self.replyTextField)
+    {
+        [self removeKeyboardNotification];
+    }
 }
 
 /*!

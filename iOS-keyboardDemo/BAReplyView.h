@@ -73,6 +73,8 @@ typedef void(^cilckIndexBlock)(NSString *contentStr);
 @property (nonatomic, strong) UITextField      *replyTextField;
 @property (nonatomic, copy  ) cilckIndexBlock   clickIndexBlock;
 @property (nonatomic, strong) NSString         *placeHolder;
+/*! 键盘是否已弹出，默认：YES */
+@property (nonatomic, assign) BOOL              isShowKeyboard;
 
 /*!
  *  初始化回复框
@@ -89,11 +91,11 @@ typedef void(^cilckIndexBlock)(NSString *contentStr);
 /*!
  *  注册键盘通知
  */
-- (void)registNotification;
+- (void)registKeyboardNotification;
 
 /*!
  *  移除键盘通知
  */
-- (void)removeNotification;
+- (void)removeKeyboardNotification;
 
 @end
